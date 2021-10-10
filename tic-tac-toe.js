@@ -6,6 +6,12 @@ function Main(){
     board = document.querySelector('#board');
     for (let i = 0; i < board.children.length; i++){
         board.children[i].classList.add("square");
+        board.children[i].addEventListener('mouseover',function(){
+            this.classList.add('hover');
+            });
+        board.children[i].addEventListener('mouseout',function(){
+            this.classList.remove('hover');
+            });
         board.children[i].addEventListener('click', function(){
             if (lastmove == "-") {
                 this.textContent = "X";
