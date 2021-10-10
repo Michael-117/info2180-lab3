@@ -38,6 +38,9 @@ function Main(){
             }
         });
     }
+    document.querySelector('button').addEventListener('click', function(){
+        window.location.reload();
+    });
 };
     
 function checkWin(){
