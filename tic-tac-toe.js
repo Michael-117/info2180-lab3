@@ -1,16 +1,32 @@
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', Main);
 
-
+function Main(){
+    lastmove = "-";
     board = document.querySelector('#board');
-    squares = [];
     for (let i = 0; i < board.children.length; i++){
         board.children[i].classList.add("square");
-        squares.push(board.children[i].id)
+        board.children[i].addEventListener('click', function(){
+            if (lastmove == "-") {
+                this.textContent = "X";
+                this.classList.add("X");
+                lastmove = "X";
+            }
+            else if (lastmove == "X") {
+                this.textContent = "O";
+                this.classList.add("O");
+                lastmove = "O";
+            }
+            else {
+                this.textContent = "X";
+                this.classList.add("X");
+                lastmove = "X";
+            }
+
+        })
     }
+
+};
     
 
-    
 
-
-});
