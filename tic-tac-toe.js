@@ -1,43 +1,47 @@
-
 document.addEventListener('DOMContentLoaded', Main);
 
 function Main(){
     lastmove = "-";
     boardState = Array(9);
-
     board = document.querySelector('#board');
     for (let i = 0; i < board.children.length; i++){
+        //Event Listener for game environment creation
         board.children[i].classList.add("square");
+        //Event Listener for game square hover on
         board.children[i].addEventListener('mouseover',function(){
             this.classList.add('hover');
             });
+        //Event Listener for game square hover off
         board.children[i].addEventListener('mouseout',function(){
             this.classList.remove('hover');
             });
+        //Event Listeners for game square clicks
         board.children[i].addEventListener('click', function(){
             if (lastmove == "-") {
                 this.textContent = "X";
                 this.classList.add("X");
                 lastmove = "X";
                 boardState[i] = "X";
-                checkWin();
             }
             else if (lastmove == "X") {
                 this.textContent = "O";
                 this.classList.add("O");
                 lastmove = "O";
                 boardState[i] = "O";
-                checkWin();
             }
             else {
                 this.textContent = "X";
                 this.classList.add("X");
                 lastmove = "X";
                 boardState[i] = "X";
-                checkWin();
             }
+            //Disallow Cheating
+            this.removeEventListener('click',arguments.callee);
+            //Confirm Winner
+            checkWin();
         });
     }
+    //Reset Game
     document.querySelector('button').addEventListener('click', function(){
         window.location.reload();
     });
@@ -112,5 +116,3 @@ function checkWin(){
         document.querySelector('#status').textContent = "Congratulations! O is the Winner!";
     }
 };
-
-
